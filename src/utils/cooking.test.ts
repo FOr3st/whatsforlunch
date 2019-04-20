@@ -4,7 +4,8 @@ import {
   freshnessCompareFunction,
   getAvailableIngredients,
   recipeCanBePrepared,
-  filterNotFreshIngrediends
+  filterNotFreshIngrediends,
+  getSortedAvailableRecipes
 } from "./cooking";
 
 const bestBeforeDate = new Date(2019, 2, 1);
@@ -232,6 +233,7 @@ describe("Cooking", () => {
     const { cheeseburger } = getRecipes();
 
     const result = recipeCanBePrepared(cheeseburger, [ham, bun, salad]);
+
     expect(result).toBe(false);
   });
 
@@ -296,7 +298,9 @@ describe("Cooking", () => {
       [ham, bun, notFreshCheese, notFreshSalad],
       new Date(2019, 1, 1)
     );
+
     const result = recipes.sort(compareFunction);
+
     expect(result).toEqual([
       {
         title: "Hamburger",
@@ -309,6 +313,32 @@ describe("Cooking", () => {
       {
         title: "Greek Salad",
         ingredients: ["Cheese", "Ham", "Salad"]
+      }
+    ]);
+  });
+
+  test("testing sorting availablre recipes function", () => {
+    const { cheese, ham, bun, salad } = getIngredients();
+    const { cheeseburger, greekSalad, hamburger } = getRecipes();
+
+    const result = getSortedAvailableRecipes(
+      [cheeseburger, greekSalad, hamburger],
+      [cheese, ham, bun, salad],
+      new Date(2019, 1, 1)
+    );
+
+    expect(result).toEqual([
+      {
+        title: "Cheeseburger",
+        ingredients: ["Bun", "Cheese", "Ham"]
+      },
+      {
+        title: "Greek Salad",
+        ingredients: ["Cheese", "Ham", "Salad"]
+      },
+      {
+        title: "Hamburger",
+        ingredients: ["Bun", "Ham"]
       }
     ]);
   });
