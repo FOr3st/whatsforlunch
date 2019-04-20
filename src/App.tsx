@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import { MainPageContainer } from "./containers";
 import { GlobalStyles } from "./GlobalStyles";
-import styled from "styled-components";
 
 const StyledMain = styled.main`
   height: 100%;

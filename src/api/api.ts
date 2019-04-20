@@ -6,5 +6,6 @@ export async function get<T>(url: string): Promise<T> {
       "Content-Type": "application/json"
     }
   });
+  
   return result.data as T;
 }

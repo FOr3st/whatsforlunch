@@ -28,10 +28,6 @@ const PageContainer = styled.div`
   justify-content: center;
 `;
 
-const PageContent = styled.div`
-  height: 100%;
-`;
-
 export class MainPage extends React.Component<MainPageProps, MainPageState> {
   constructor(props: any) {
     super(props);
