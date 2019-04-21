@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Ingredient, Recipe } from "../types";
 import { getSortedAvailableRecipes } from "../utils";
+import { RecipeInfo } from "./RecipeInfo";
 
 export interface MainPageProps {
   ingredients: Array<Ingredient>;
@@ -46,7 +47,7 @@ export class MainPage extends React.Component<MainPageProps, MainPageState> {
 
     return (
       <PageContainer>
-          {recipesView ? this.renderRecipes() : this.renderButton()}
+        {recipesView ? this.renderRecipes() : this.renderButton()}
       </PageContainer>
     );
   }
@@ -65,20 +66,9 @@ export class MainPage extends React.Component<MainPageProps, MainPageState> {
       ingredients
     );
 
-    const listItems = sortedAvailableRecipes.map(
-      ({ title, ingredients }, ind) => (
-        <div key={ind + title}>
-          <h3>{title}</h3>
-          <h5>What you'll need:</h5>
-
-          <ul>
-            {ingredients.map(name => (
-              <li>{name}</li>
-            ))}
-          </ul>
-        </div>
-      )
-    );
+    const listItems = sortedAvailableRecipes.map((recipe, ind) => (
+      <RecipeInfo key={ind} recipe={recipe} />
+    ));
 
     return <div>{listItems}</div>;
   }
