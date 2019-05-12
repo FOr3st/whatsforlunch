@@ -317,7 +317,7 @@ describe("Cooking", () => {
     ]);
   });
 
-  test("testing sorting availablre recipes function", () => {
+  test("testing sorting available recipes function", () => {
     const { cheese, ham, bun, salad } = getIngredients();
     const { cheeseburger, greekSalad, hamburger } = getRecipes();
 
